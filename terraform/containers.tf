@@ -2,7 +2,7 @@ resource "proxmox_virtual_environment_container" "syncthing" {
 
     node_name =  "pastabox"
 
-    depends_on = [proxmox_download_file.alpine-container-template]
+    depends_on = [proxmox_virtual_environment_oci_image.syncthing]
 
     initialization {
         hostname = "syncthing" 
@@ -20,7 +20,7 @@ resource "proxmox_virtual_environment_container" "syncthing" {
     }
 
     operating_system {
-        template_file_id = proxmox_download_file.alpine-container-template.id
+        template_file_id = proxmox_virtual_environment_oci_image.syncthing.id
         type = "alpine"
     }
 
